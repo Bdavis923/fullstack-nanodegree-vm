@@ -1,0 +1,14 @@
+from sqlalchemy import import create_engine
+from sqlalchemy.orm import sessionmaker
+from database_setup import BAse, Restaurant, MenuItem
+
+engine = create_engine('sqlite:///rerstaurantmenu.db')
+
+Base.metadata.bind = engine
+DBSession = sessionmaker(bind = engine)
+session = DBSession()
+
+myFirstResturant = Restaurant(name = "Pizza Palace")
+session.add(myFirstResturant)
+session.commit()
+print session.query(Restaurant).all()
